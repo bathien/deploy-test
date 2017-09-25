@@ -9,3 +9,25 @@ services:
       - .:/deploy-test
     ports:
       - "3000:3000"
+    links:
+      - db
+      - redis
+    volumes:
+      - .:${PWD}
+    environment:
+      DATABASE_URL: mysql2://root:password@db:3306
+      REDIS_URL: redis://redis:6379
+      REDIS_HOSTNAME: redis
+  redis:
+    image: redis:3.2
+    ports:
+      - "6379:6379"
+  db:
+    image: mysql:5.6
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - "./Dockerfiles/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"
+      - "./Dockerfiles/mysql/conf.d:/etc/mysql/conf.d"

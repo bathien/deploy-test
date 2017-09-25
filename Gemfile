@@ -8,7 +8,7 @@ end
 
 gem 'rails', '~> 5.1.4'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem "mysql2"
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -40,10 +40,23 @@ gem "capistrano-rvm"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 2.13'
-  gem 'selenium-webdriver'
+    gem "pry"
+  gem "pry-byebug"
+  gem "binding_of_caller"
+  gem "rspec"
+  gem "rspec-rails"
+  gem "rspec-collection_matchers"
+  gem "factory_girl_rails"
+  gem "better_errors"
+  gem "guard-rspec", require: false
+  gem "database_cleaner"
+  gem "brakeman", require: false
+  gem "jshint"
+  gem "bundler-audit"
+  gem "rubocop", ">= 0.35.0", require: false
+  gem "rubocop-checkstyle_formatter", require: false
+  gem "scss_lint", require: false
+  gem "scss_lint_reporter_checkstyle", require: false
 end
 
 group :development do
